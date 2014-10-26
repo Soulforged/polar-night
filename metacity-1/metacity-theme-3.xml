@@ -9,6 +9,17 @@
 </info>
 
 <!-- meaningfull constants -->
+<constant name="C_titlebar" value="gtk:custom(wm_bg,#363D43)" />
+<constant name="C_border_focused" value="gtk:custom(wm_border_focused,#363D43)" />
+<constant name="C_border_unfocused" value="gtk:custom(wm_border_unfocused,#363D43)" />
+<constant name="C_title_focused" value="gtk:custom(wm_title_focused,#fff)" />
+<constant name="C_title_unfocused" value="gtk:custom(wm_title_unfocused,#fff)" />
+<constant name="C_icons_focused" value="gtk:custom(wm_icons_focused,#dcdcdc)" />
+<constant name="C_icons_focused_prelight" value="gtk:custom(wm_icons_focused_prelight,gtk:bg[SELECTED])" />
+<constant name="C_icons_focused_pressed" value="gtk:custom(wm_icons_focused_pressed,shade/gtk:bg[SELECTED]/0.8)" />
+<constant name="C_icons_unfocused" value="gtk:custom(wm_icons_unfocused,#888888)" />
+<constant name="C_icons_unfocused_prelight" value="gtk:custom(wm_icons_focused_prelight,gtk:bg[SELECTED])" />
+<constant name="C_icons_unfocused_pressed" value="gtk:custom(wm_icons_focused_pressed,shade/gtk:bg[SELECTED]/0.8)" />
 
 <constant name="D_icons_unfocused_offset" value="0" /> <!-- offset of the unfocused icons -->
 <!-- geometries -->
@@ -91,42 +102,55 @@
 	<!-- title -->
 
 <draw_ops name="title_focused">
-	<title color="#666666" x="3 `max` (width-title_width)/2" y="0 `max` ((height-title_height)/2)"/>
+	<title version="< 3.1"
+               x="(0 `max` ((width - title_width) / 2)) + 2"
+               y="(0 `max` ((height - title_height) / 2))"
+               color="C_title_focused" />
+	<title version=">= 3.1"
+               x="(0 `max` ((frame_x_center - title_width/2) `min` (width - title_width))) + 2"
+               y="(0 `max` ((height - title_height) / 2))"
+               ellipsize_width="width"
+               color="C_title_focused" />
 </draw_ops>
 
 <draw_ops name="title_unfocused">
-	<title color="#999999" x="3 `max` (width-title_width)/2" y="0 `max` ((height-title_height)/2)"/>
+	<title version="< 3.1"
+               x="(0 `max` ((width - title_width) / 2)) + 2"
+               y="(0 `max` ((height - title_height) / 2))"
+               color="C_title_unfocused" />
+	<title version=">= 3.1"
+               x="(0 `max` ((frame_x_center - title_width/2) `min` (width - title_width))) + 2"
+               y="(0 `max` ((height - title_height) / 2))"
+               ellipsize_width="width"
+               color="C_title_unfocused" />
 </draw_ops>
 
 	<!-- window decorations -->
 
 <draw_ops name="entire_background_focused">
-	<rectangle color="#eeeeee" x="0" y="0" width="width" height="height" filled="true" />
+	<rectangle color="C_titlebar" x="0" y="0" width="width" height="height" filled="true" />
 </draw_ops>
 
 <draw_ops name="entire_background_unfocused">
-	<rectangle color="#eeeeee" x="0" y="0" width="width" height="height" filled="true" />
+	<include name="entire_background_focused" />
 </draw_ops>
 
 <draw_ops name="titlebar_fill_focused">
-	<!-- Background gradient -->
-	<rectangle color="#eeeeee" x="0" y="0" width="width" height="height" filled="true" />
+	<rectangle color="C_titlebar" x="0" y="0" width="width" height="height" filled="true" />
 </draw_ops>
 
-
-<draw_ops name="titlebar_fill_attached_focused"> <!-- gradient for attached and modal dialogs titlebar-->
-	<!-- Background gradient -->
-	<rectangle color="#eeeeee" x="0" y="0" width="width" height="height" filled="true" />
+<draw_ops name="titlebar_fill_attached_focused">
+	<include name="entire_background_focused" />
 </draw_ops>
 
 <draw_ops name="titlebar_fill_unfocused">
-	<rectangle color="#eeeeee" x="0" y="0" width="width" height="height" filled="true" />
+	<rectangle color="C_titlebar" x="0" y="0" width="width" height="height" filled="true" />
 </draw_ops>	
 <draw_ops name="bottom">
-	<rectangle color="#eeeeee" x="0" y="0" width="width" height="height" filled="true" />
+	<rectangle color="C_titlebar" x="0" y="0" width="width" height="height" filled="true" />
 </draw_ops>		
 <draw_ops name="bottom-inactive">
-	<rectangle color="#eeeeee" x="0" y="0" width="width" height="height" filled="true" />
+	<rectangle color="C_titlebar" x="0" y="0" width="width" height="height" filled="true" />
 </draw_ops>	
 
 <draw_ops name="hilight">
@@ -162,11 +186,11 @@
 </draw_ops>
 
 <draw_ops name="border_focused">
-	<rectangle color="#eeeeee" x="0" y="0" width="width" height="height" filled="true" />
+	<rectangle color="C_border_focused" x="0" y="0" width="width" height="height" filled="true" />
 </draw_ops>
 
 <draw_ops name="border_unfocused">
-	<rectangle color="#eeeeee" x="0" y="0" width="width" height="height" filled="true" />
+	<rectangle color="C_border_unfocused" x="0" y="0" width="width" height="height" filled="true" />
 </draw_ops>
 
 
